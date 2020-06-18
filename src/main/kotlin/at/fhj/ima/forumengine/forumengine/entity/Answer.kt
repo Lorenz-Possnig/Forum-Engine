@@ -13,7 +13,7 @@ class Answer(
         var hochwaehlis: Int = 0,
         var runterwaehlis: Int = 0,
         @ManyToOne
-        var question: Question
+        var question: Question? = null
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
