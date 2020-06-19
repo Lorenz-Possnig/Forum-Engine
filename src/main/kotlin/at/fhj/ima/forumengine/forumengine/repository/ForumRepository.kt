@@ -11,7 +11,7 @@ import javax.transaction.Transactional
 @Repository
 interface ForumRepository : JpaRepository<Forum, Int> {
 
-    @Query("FROM Forum WHERE name = :search")
+    @Query("FROM Forum WHERE (LOWER(name) LIKE LOWER('%:search%')) OR (LOWER(description) LIKE LOWER('%:search%'))")
     fun findByName(@Param("search") search: String): List<Forum>
 
     @Transactional

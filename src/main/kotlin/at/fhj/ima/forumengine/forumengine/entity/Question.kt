@@ -1,6 +1,6 @@
 package at.fhj.ima.forumengine.forumengine.entity
 
-import com.sun.scenario.effect.Identity
+import java.math.BigInteger
 import java.time.LocalDate
 import javax.persistence.*
 
@@ -21,11 +21,12 @@ class Question(
         @JoinColumn(name = "forumId")
         var forum: Forum? = null,
         @OneToMany(mappedBy = "question", orphanRemoval = true, cascade = [CascadeType.ALL])
-        var answers: MutableList<Answer> = mutableListOf()
+        var answers: MutableList<Answer> = mutableListOf(),
+        @ManyToOne
+        @JoinColumn(name = "userId")
+        var createdBy: User? = null
 ) {
-        override fun toString(): String {
-                return "Question(questId=$questId, title='$title', text='$text', postedOn=$postedOn, hochwaehlis=$hochwaehlis, runterwaehlis=$runterwaehlis, forum=$forum, answers=$answers)"
-        }
+        fun getUsername():String = createdBy?.username?:"unknown"
 
         override fun equals(other: Any?): Boolean {
                 if (this === other) return true
@@ -46,7 +47,7 @@ class Question(
         }
 
         override fun hashCode(): Int {
-                var result = questId ?: 0
+                var result = questId?.hashCode() ?: 0
                 result = 31 * result + title.hashCode()
                 result = 31 * result + text.hashCode()
                 result = 31 * result + (postedOn?.hashCode() ?: 0)
@@ -57,5 +58,7 @@ class Question(
                 return result
         }
 
-
+        override fun toString(): String {
+                return "Question(questId=$questId, title='$title', text='$text', postedOn=$postedOn, hochwaehlis=$hochwaehlis, runterwaehlis=$runterwaehlis, forum=$forum, answers=$answers)"
+        }
 }

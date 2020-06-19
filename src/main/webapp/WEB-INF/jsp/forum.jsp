@@ -8,4 +8,5 @@
 <c:forEach items="${questions}" var="question">
     <a href="question?forumId=${forum.forumId}&questId=${question.questId}"><h2>${question.title}:</h2></a>
     <p>${question.text}</p>
+    <p>Created by: ${question.getUsername()}</p>
 </c:forEach>

@@ -13,10 +13,19 @@
 <h3>Answers:</h3>
 <hr>
 <c:forEach items="${answers}" var="answer">
+    <p>Answer from: ${answer.getUsername()}</p>
     <p>${answer.text}</p>
-    <a href="deleteanswer?forumId=${forum.forumId}&questId=${question.questId}&answId=${answer.answId}">
-        <p>Delete</p>
-    </a>
+        <c:choose>
+            <c:when test="${answer.getUsername() == 'unknown' ||
+                            answer.getUsername() == pageContext.request.remoteUser ||
+                            pageContext.request.remoteUser == 'admin'}">
+                <a href="deleteanswer?forumId=${forum.forumId}&questId=${question.questId}&answId=${answer.answId}">
+                <p>Delete</p>
+                </a>
+            </c:when>
+            <c:otherwise>
+            </c:otherwise>
+        </c:choose>
     <hr>
 </c:forEach>
 <form method="post" action="createanswer?forumId=${forum.forumId}&questId=${question.questId}">
