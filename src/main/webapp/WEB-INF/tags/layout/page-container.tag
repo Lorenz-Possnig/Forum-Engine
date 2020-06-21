@@ -18,7 +18,7 @@
         </head>
         <body>
             <div class="header">
-                <h3 style="color: white; text-align: center;">You ask, others google!</h3>
+                <h3 style="color: white; text-align: center;">You ask, we google!</h3>
                 <p style="color: white; text-align: center;">forumengine.org</p>
             </div>
             <nav class="navbar navbar-expand-lg my-navbar sticky-top">
@@ -40,6 +40,9 @@
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/askUsername">I forgot my Password</a>
                 </li>
             </c:if>
             <c:if test="${pageContext.request.remoteUser != null}">
@@ -122,8 +125,8 @@
                         Forumengine.org
                     </div>
                     <div class="col-sm">
-                        <a href="facebook.com/forum-engine-109767487448741" class="fa fa-facebook"></a>
-                        <a href="instagram.com/real_forum_engine" class="fa fa-instagram"></a>
+                        <a href="http://www.facebook.com/forum-engine-109767487448741" class="fa fa-facebook"></a>
+                        <a href="http://www.instagram.com/real_forum_engine" class="fa fa-instagram"></a>
                     </div>
                 </div>
             </div>

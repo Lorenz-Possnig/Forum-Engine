@@ -11,7 +11,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<layout:page-container title="Employees" activePage="listEmployees">
+<layout:page-container title="Error" activePage="Error">
     <div class="card my-card">
         <div class="card">
             <div class="card-header" style="height: 4rem; background-color: #4e73ff">

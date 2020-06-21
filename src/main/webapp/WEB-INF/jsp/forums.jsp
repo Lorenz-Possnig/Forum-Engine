@@ -11,7 +11,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<layout:page-container title="Employees" activePage="listEmployees">
+<layout:page-container title="ForumEngine" activePage="forums">
 
 <div class="container align-items-center">
     <div class="card my-card">

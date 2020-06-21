@@ -37,7 +37,11 @@ class User(
         var answers: MutableList<Answer> = mutableListOf(),
         @Column
         @field:NotNull
-        var isBanned: Boolean = false
+        var isBanned: Boolean = false,
+        @OneToOne(mappedBy = "user")
+        var profilePicture: PersistedImage? = null,
+        var securityQuestion: String? = null,
+        var securityQuestionAnswer: String? = null
 ) {
     fun getIsBanned(): Boolean = isBanned
     override fun equals(other: Any?): Boolean {
@@ -57,6 +61,9 @@ class User(
         if (questions != other.questions) return false
         if (answers != other.answers) return false
         if (isBanned != other.isBanned) return false
+        if (profilePicture != other.profilePicture) return false
+        if (securityQuestion != other.securityQuestion) return false
+        if (securityQuestionAnswer != other.securityQuestionAnswer) return false
 
         return true
     }
@@ -73,11 +80,14 @@ class User(
         result = 31 * result + questions.hashCode()
         result = 31 * result + answers.hashCode()
         result = 31 * result + isBanned.hashCode()
+        result = 31 * result + (profilePicture?.hashCode() ?: 0)
+        result = 31 * result + (securityQuestion?.hashCode() ?: 0)
+        result = 31 * result + (securityQuestionAnswer?.hashCode() ?: 0)
         return result
     }
 
     override fun toString(): String {
-        return "User(userId=$userId, username=$username, password=$password, firstname=$firstname, lastname=$lastname, mail=$mail, role=$role, forums=$forums, questions=$questions, answers=$answers, isBanned=$isBanned)"
+        return "User(userId=$userId, username=$username, password=$password, firstname=$firstname, lastname=$lastname, mail=$mail, role=$role, forums=$forums, questions=$questions, answers=$answers, isBanned=$isBanned, profilePicture=${profilePicture?.id?:""}, securityQuestion=$securityQuestion, securityQuestionAnswer=$securityQuestionAnswer)"
     }
 
 

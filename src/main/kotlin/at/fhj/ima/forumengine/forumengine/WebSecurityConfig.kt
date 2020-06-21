@@ -29,6 +29,8 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
             .antMatchers(HttpMethod.GET,"/error-404").permitAll()
             .antMatchers(HttpMethod.GET,"/error-403").permitAll()
             .antMatchers(HttpMethod.GET,"/error-500").permitAll()
+            .antMatchers("/askSecurityQuestion").permitAll()
+            .antMatchers("/askUsername").anonymous()
             .antMatchers("/css/custom.css").permitAll()
             .antMatchers("/showuser").permitAll()
             .antMatchers("/user").permitAll()

@@ -23,4 +23,15 @@ interface UserRepository : JpaRepository<User, Int> {
     @Modifying
     @Query("UPDATE User SET isBanned = false WHERE userId = :userId")
     fun unbanById(@Param("userId") userId: Int)
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE User SET firstname = :firstname, lastname = :lastname," +
+            "password = :password, securityQuestion = :securityQuestion, securityQuestionAnswer = :securityQuestionAnswer WHERE userId = :userId")
+    fun updateById(@Param("userId") userId: Int,
+                   @Param("firstname") firstname: String,
+                   @Param("lastname") lastname: String,
+                   @Param("password") password: String,
+                   @Param("securityQuestion") securityQuestion: String,
+                   @Param("securityQuestionAnswer") securityQuestionAnswer: String)
 }

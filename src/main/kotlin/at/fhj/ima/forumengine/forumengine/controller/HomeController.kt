@@ -1,7 +1,9 @@
 package at.fhj.ima.forumengine.forumengine.controller
 
+import at.fhj.ima.forumengine.forumengine.entity.PersistedImage
 import at.fhj.ima.forumengine.forumengine.entity.User
 import at.fhj.ima.forumengine.forumengine.repository.ForumRepository
+import at.fhj.ima.forumengine.forumengine.repository.ImageRepository
 import at.fhj.ima.forumengine.forumengine.repository.QuestionRepository
 import at.fhj.ima.forumengine.forumengine.repository.UserRepository
 import org.springframework.dao.DataIntegrityViolationException
@@ -20,7 +22,8 @@ import javax.validation.Valid
 class HomeController (
         val userRepository: UserRepository,
         val forumRepository: ForumRepository,
-        val questionRepository: QuestionRepository
+        val questionRepository: QuestionRepository,
+        val imageRepository: ImageRepository
 ) {
     @RequestMapping("", method = [RequestMethod.GET])
     fun homePage(): String = "redirect:forums"
@@ -47,6 +50,17 @@ class HomeController (
         return "redirect:user?userId=${user.userId}"
     }
 
+    @RequestMapping("/resetUser", method = [RequestMethod.GET])
+    fun resetUser(model: Model, @RequestParam("username", required = true) username: String, @ModelAttribute("plainSecurityQuestion") answer: String): String {
+        val user = userRepository.findByUsername(username)
+        return if (user.securityQuestionAnswer == answer) {
+            model["user"] = user
+            "register"
+        } else {
+            "error-403"
+        }
+
+    }
 
     @RequestMapping("/createuser", method = [RequestMethod.POST])
     fun createUser(@ModelAttribute("user") @Valid user: User,
@@ -57,7 +71,18 @@ class HomeController (
         } else {
             try {
                 user.password = BCryptPasswordEncoder().encode(user.password)
-                userRepository.save(user)
+                val doesExist = userRepository.existsById(user.userId?:0)
+                if (doesExist) {
+                    userRepository.updateById(
+                            userId = user.userId!!,
+                            firstname = user.firstname?:"",
+                            lastname = user.lastname?:"",
+                            password = user.password!!,
+                            securityQuestion = user.securityQuestion?:"",
+                            securityQuestionAnswer = user.securityQuestionAnswer!!)
+                } else {
+                    userRepository.save(user)
+                }
             } catch (dive: DataIntegrityViolationException) {
                 if (dive.message.orEmpty().contains("name")) {
                     bindingResult.rejectValue("username", "username.alreadyInUse", "Username already in use")
@@ -74,15 +99,29 @@ class HomeController (
         return "redirect:/forums"
     }
 
+    @RequestMapping("/editUser", method = [RequestMethod.GET])
+    fun createOrEditUser(model: Model,
+                         @RequestParam("userId", required = false) userId: Int?): String {
+        if (userId != null) {
+            val user = userRepository.findById(userId).get()
+            model["user"] = user
+        }
+        return "register"
+    }
+
     @RequestMapping("/user", method = [RequestMethod.GET])
     fun showUser(model: Model,
                  @RequestParam("userId", required = true) userId: Int):String {
         val user = userRepository.findById(userId).get()
         val forums = forumRepository.findByUserId(user)
         val questions = questionRepository.findByUserId(user)
+        val image: PersistedImage? = imageRepository.findByUser(user)
         model["user"] = user
         model["forums"] = forums
         model["questions"] = questions
+        if (image != null) {
+            model["image"] = image
+        }
         return "showuser"
     }
 }

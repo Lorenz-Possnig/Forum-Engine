@@ -15,7 +15,28 @@
     <div class="card my-card">
         <div class="card">
             <div class="card-header" style="background-color: #4e73ff">
-                <h1 style="padding-left: 0px; color: black;">${user.username}</h1>
+                <div class="col-sm">
+                    <div class="container">
+                        <img src="${image.toStreamingURI()}" class="img-responsive" width="200" height="200" alt="The user has not uploaded a profile picture yet">
+                    </div>
+                    <h1 style="padding-left: 0px; color: black;">${user.username}</h1>
+                </div>
+                <c:if test="${pageContext.request.remoteUser == user.username}">
+                    <div class="col-sm">
+                        <form method="post" action="/fileupload" enctype="multipart/form-data">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary" type="submit">Upload</button>
+                                </div>
+                                <input type="file" class="form-control" id="image"
+                                       aria-describedby="basic-addon1" name="image" accept="image/jpeg, image/png, image/gif">
+                                <div class="input-group-append">
+                                    <label class="custom-file-label" for="image">Choose File</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </c:if>
             </div>
             <h2>Forums Created: ${user.forums.size()}</h2>
             <h2>Questions Asked: ${user.questions.size()}</h2>

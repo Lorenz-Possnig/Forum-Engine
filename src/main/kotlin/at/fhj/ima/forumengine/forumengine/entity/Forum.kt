@@ -23,7 +23,6 @@ class Forum(
         var frontImage: String = ""
 ) {
         fun getUsername(): String = createdBy?.username?:"unknown"
-
         override fun equals(other: Any?): Boolean {
                 if (this === other) return true
                 if (javaClass != other?.javaClass) return false
@@ -35,20 +34,24 @@ class Forum(
                 if (description != other.description) return false
                 if (questions != other.questions) return false
                 if (createdBy != other.createdBy) return false
+                if (createdOn != other.createdOn) return false
+                if (frontImage != other.frontImage) return false
 
                 return true
         }
 
         override fun hashCode(): Int {
-                var result = forumId?.hashCode() ?: 0
+                var result = forumId ?: 0
                 result = 31 * result + name.hashCode()
                 result = 31 * result + description.hashCode()
                 result = 31 * result + questions.hashCode()
-                result = 31 * result + createdBy.hashCode()
+                result = 31 * result + (createdBy?.hashCode() ?: 0)
+                result = 31 * result + createdOn.hashCode()
+                result = 31 * result + frontImage.hashCode()
                 return result
         }
 
-        override fun toString(): String {
-                return "Forum(forumId=$forumId, name='$name', description='$description', questions=$questions, createdBy=$createdBy)"
-        }
+
+
+
 }

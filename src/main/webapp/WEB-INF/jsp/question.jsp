@@ -11,7 +11,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<layout:page-container title="Employees" activePage="listEmployees">
+<layout:page-container title="${question.title} in ${forum.name}" activePage="question">
 
     <div class="card my-card">
         <div card="card-header" style="height: 6rem; background-color: darkslategray">

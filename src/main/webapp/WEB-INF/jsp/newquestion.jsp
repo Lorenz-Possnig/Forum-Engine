@@ -11,7 +11,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<layout:page-container title="Employees" activePage="listEmployees">
+<layout:page-container title="New Question" activePage="newquestion">
     <h1>Ask a new question</h1>
     <c:choose>
         <c:when test="${question != null}">
