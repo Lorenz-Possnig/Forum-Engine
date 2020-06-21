@@ -96,10 +96,8 @@
         color: white;
         text-align: center;}
         .fa {
-        padding: 20px;
-        font-size: 30px;
-        height: 30px;
-        width: 30px;
+        padding: 10px;
+        font-size: 20px
         margin: 5px 2px;
         text-align: center;
         text-decoration: none;
