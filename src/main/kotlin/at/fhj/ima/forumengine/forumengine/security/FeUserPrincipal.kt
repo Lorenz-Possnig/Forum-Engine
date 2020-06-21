@@ -26,11 +26,11 @@ class FeUserPrincipal(val user: User) : UserDetails {
 
     override fun isEnabled(): Boolean = true
 
-    override fun getUsername(): String = user.username
+    override fun getUsername(): String = user.username?:"unknown"
 
     override fun isCredentialsNonExpired(): Boolean = true
 
-    override fun getPassword(): String = user.password
+    override fun getPassword(): String = user.password?:"unknown"
 
     override fun isAccountNonExpired(): Boolean = true
 

@@ -1,6 +1,7 @@
 package at.fhj.ima.forumengine.forumengine.entity
 
 import java.math.BigInteger
+import java.time.LocalDate
 import javax.persistence.*
 
 @Entity
@@ -17,7 +18,8 @@ class Answer(
         var question: Question? = null,
         @ManyToOne
         @JoinColumn(name = "userId")
-        var createdBy: User? = null
+        var createdBy: User? = null,
+        var createdOn: LocalDate = LocalDate.now()
 ) {
     fun getUsername(): String = createdBy?.username?:"unknown"
 

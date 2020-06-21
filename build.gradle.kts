@@ -20,13 +20,15 @@ dependencies {
 	//Spring
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("javax.servlet:jstl")
-
+	// spring-security-taglibs
+	implementation("org.springframework.security:spring-security-taglibs")
 	//MySQL
 	implementation("mysql:mysql-connector-java")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {

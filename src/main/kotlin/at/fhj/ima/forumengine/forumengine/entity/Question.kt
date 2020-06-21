@@ -24,7 +24,8 @@ class Question(
         var answers: MutableList<Answer> = mutableListOf(),
         @ManyToOne
         @JoinColumn(name = "userId")
-        var createdBy: User? = null
+        var createdBy: User? = null,
+        var createdOn: LocalDate = LocalDate.now()
 ) {
         fun getUsername():String = createdBy?.username?:"unknown"
 

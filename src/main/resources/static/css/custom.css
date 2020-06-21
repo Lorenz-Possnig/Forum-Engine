@@ -1,0 +1,109 @@
+
+/* remove rounding from cards, buttons and inputs */
+
+.my-navbar {
+    background-color: #4e73ff;
+}
+
+.my-navbar a {
+    color: peachpuff;
+    font-family: "Bahnschrift";
+}
+
+.my-navbar button {
+    font-family: Bahnschrift;
+}
+
+.list-group-item {
+    background-color: lightgrey;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 1px 20px 0 rgba(0,0,0,.1);
+    margin-top: 25px;
+    background-color: #232C47;
+}
+
+.my-link-card h5 {
+    padding-left: 15px;
+}
+
+.my-card {
+    border: none;
+    box-shadow: 0 1px 20px 0 rgba(0,0,0,.1);
+    background-color: #C5BEA6;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+}
+
+input {
+    font-family: Bahnschrift;
+}
+
+a:hover {
+    color: grey;
+}
+
+a {
+
+    color: white;
+    font-family: Bahnschrift;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+}
+
+.navbar-toggler {
+    color: #232C47;
+    background-color: white;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(78,115,255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.btn {
+    color: black;
+    background-color: white;
+}
+
+p {
+    color: white;
+    font-family: Bahnschrift;
+    padding-left: 15px;
+}
+
+h5 {
+    font-family: Bahnschrift;
+    color: white;
+    padding-left: 15px;
+}
+
+h1 {
+    padding-left: 15px;
+    font-family: Bahnschrift;
+    color: white;
+}
+
+h2 {
+    padding-left: 15px;
+    font-family: Bahnschrift;
+    color: white;
+}
+
+body {
+    background-color: #232C47;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
+

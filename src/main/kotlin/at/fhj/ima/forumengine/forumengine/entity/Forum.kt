@@ -2,6 +2,7 @@ package at.fhj.ima.forumengine.forumengine.entity
 
 import java.io.Serializable
 import java.math.BigInteger
+import java.time.LocalDate
 import javax.persistence.*
 
 @Entity(name="Forum")
@@ -18,6 +19,7 @@ class Forum(
         @ManyToOne
         @JoinColumn(name = "userId")
         var createdBy: User? = null,
+        var createdOn: LocalDate = LocalDate.now(),
         var frontImage: String = ""
 ) {
         fun getUsername(): String = createdBy?.username?:"unknown"

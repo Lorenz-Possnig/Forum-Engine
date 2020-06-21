@@ -1,6 +1,7 @@
 package at.fhj.ima.forumengine.forumengine.repository
 
 import at.fhj.ima.forumengine.forumengine.entity.Question
+import at.fhj.ima.forumengine.forumengine.entity.User
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
@@ -20,4 +21,7 @@ interface QuestionRepository : JpaRepository<Question, Int> {
     fun updateById(@Param("id") id: Int,
                    @Param("title") title: String,
                    @Param("text") text: String)
+
+    @Query("FROM Question WHERE createdBy = :user")
+    fun findByUserId(@Param("user") user: User): List<Question>
 }

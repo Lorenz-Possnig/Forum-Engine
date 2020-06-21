@@ -1,6 +1,7 @@
 package at.fhj.ima.forumengine.forumengine.repository
 
 import at.fhj.ima.forumengine.forumengine.entity.Forum
+import at.fhj.ima.forumengine.forumengine.entity.User
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
@@ -18,4 +19,7 @@ interface ForumRepository : JpaRepository<Forum, Int> {
     @Modifying
     @Query("UPDATE Forum SET name = :name, description = :description WHERE forumId = :id")
     fun updateById(@Param("id") forumId: Int, @Param("name") name: String, @Param("description") description: String)
+
+    @Query("FROM Forum WHERE createdBy = :user")
+    fun findByUserId(@Param("user") user: User): List<Forum>
 }
