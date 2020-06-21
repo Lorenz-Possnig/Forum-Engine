@@ -9,7 +9,7 @@ Forum Engine is a state of the art web application, which aims to provide its us
 
 You can browse through the different sections or topics(FORUMS) of the app, and even create your own! Each forum can contain multiple questions/anwsers regarding certain aspects of the overlaying topic.
 Every registered User is given the possibility to ask questions concerning a topic, and receive help on the matter, by experts in the field who might be able to anwser his question.
-Each User has their own User Profile Page with detailed stat-tracking about their posting activities, also theres an option to upload a profile picture on ur page.
+Each User has their own User Profile Page with detailed stat-tracking about their posting activities, also there is an option to upload a profile picture on your page.
 
 
 
@@ -17,7 +17,7 @@ Installation:
 
 User:
 
-1. To use the application urself all that is needed is a browser and an internet connection.
+1. To use the application yourself all that is needed is a browser and an internet connection.
 
 
 Developer:
