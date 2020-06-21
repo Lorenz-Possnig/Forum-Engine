@@ -40,7 +40,7 @@
                     </c:if>
                     <c:if test="${pageContext.request.remoteUser != null}">
                         <div class="col-sm">
-                            <a href="newquestion?forumId=${forum.forumId}" style="font-size:75%"><p style="color: #6c757d">Ask a question</p></a>
+                            <a href="newquestion?forumId=${forum.forumId}" style="font-size:75%"><p>Ask a question</p></a>
                         </div>
                     </c:if>
                 </div>

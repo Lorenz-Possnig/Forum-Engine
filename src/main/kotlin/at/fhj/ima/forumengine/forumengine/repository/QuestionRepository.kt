@@ -24,4 +24,9 @@ interface QuestionRepository : JpaRepository<Question, Int> {
 
     @Query("FROM Question WHERE createdBy = :user")
     fun findByUserId(@Param("user") user: User): List<Question>
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Question SET isClosed = true WHERE questId = :questId")
+    fun closeById(@Param("questId") questId: Int)
 }

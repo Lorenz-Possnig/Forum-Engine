@@ -31,6 +31,23 @@ class HomeController (
         return "register"
     }
 
+    @RequestMapping("/ban", method = [RequestMethod.GET])
+    fun banUser(model: Model,
+                @RequestParam("userId", required = true) userId: Int): String {
+        val user = userRepository.findById(userId).get()
+        userRepository.banById(userId)
+        return "redirect:user?userId=${user.userId}"
+    }
+
+    @RequestMapping("/unban", method = [RequestMethod.GET])
+    fun unbanUser(model: Model,
+                @RequestParam("userId", required = true) userId: Int): String {
+        val user = userRepository.findById(userId).get()
+        userRepository.unbanById(userId)
+        return "redirect:user?userId=${user.userId}"
+    }
+
+
     @RequestMapping("/createuser", method = [RequestMethod.POST])
     fun createUser(@ModelAttribute("user") @Valid user: User,
                    bindingResult: BindingResult,
@@ -46,6 +63,9 @@ class HomeController (
                     bindingResult.rejectValue("username", "username.alreadyInUse", "Username already in use")
                     model["errorMessage"] = "Username already in use!"
                     return newUser(model)
+                } else if (dive.message.orEmpty().contains("mail")) {
+                    bindingResult.rejectValue("mail", "mail.alreadyInUse", "Email address already in use")
+                    model["errorMessage"] = "Email address already in use!"
                 } else {
                     throw dive
                 }

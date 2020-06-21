@@ -24,7 +24,8 @@
         <label for="title"><p style="padding-left: 0px">Title:</p></label><br>
         <input type="text" id = "title" name = "title" value="${question.title}"><br>
         <label for="text"><p style="padding-left: 0px">Question text:</p></label><br>
-        <textarea rows="15" cols="100" placeholder="Put the description of your forum here" id="text" name="text">${question.text}</textarea>
+        <textarea rows="15" cols="100" placeholder="Put your question here" id="text" name="text">${question.text}</textarea>
+        <input type="hidden" id="isClosed" name="isClosed" value="false">
     <br><br>
         <input type="submit" value="Ask Question">
     </form>

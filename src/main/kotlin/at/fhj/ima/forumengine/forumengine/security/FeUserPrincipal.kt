@@ -9,6 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails
 class FeUserPrincipal(val user: User) : UserDetails {
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         val authorities = HashSet<GrantedAuthority>()
+        if (user.isBanned) {
+            return authorities
+        }
         when (user.role) {
             UserRole.ROLE_ADMIN -> {
                 authorities.add(SimpleGrantedAuthority("ROLE_ADMIN"))

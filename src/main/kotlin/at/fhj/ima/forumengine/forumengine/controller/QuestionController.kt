@@ -41,6 +41,25 @@ class QuestionController(
         return "question"
     }
 
+    @RequestMapping("/close", method = [RequestMethod.GET])
+    fun closeQuestion(model: Model,
+                      @RequestParam("questId", required = true) questId: Int,
+                      principal: Principal): String {
+        val user = userRepository.findByUsername(principal.name)
+        val question = questionRepository.findById(questId).get()
+        if (question.createdBy == user) {
+            questionRepository.closeById(questId)
+            model["message"] = "Question ${question.title} deleted"
+            if (question.forum != null) {
+                return "redirect:forums"
+            } else {
+                return "redirect:forums"
+            }
+        } else {
+            return "redirect:forums"
+        }
+    }
+
     @RequestMapping("/newquestion", method=[RequestMethod.GET])
     fun newOrEditQuestion(model: Model,
                           @RequestParam(required = true) forumId: Int,

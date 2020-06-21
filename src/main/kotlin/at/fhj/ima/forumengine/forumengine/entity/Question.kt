@@ -25,8 +25,14 @@ class Question(
         @ManyToOne
         @JoinColumn(name = "userId")
         var createdBy: User? = null,
-        var createdOn: LocalDate = LocalDate.now()
+        @Column
+        var createdOn: LocalDate = LocalDate.now(),
+        @Column
+        var isClosed: Boolean = false
 ) {
+
+        fun getIsClosed(): Boolean = isClosed
+
         fun getUsername():String = createdBy?.username?:"unknown"
 
         override fun equals(other: Any?): Boolean {

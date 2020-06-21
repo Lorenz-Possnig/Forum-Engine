@@ -13,10 +13,26 @@
 
 <layout:page-container title="Employees" activePage="listEmployees">
     <div class="card my-card">
-        <h1 style="padding-left: 0px; color: black;">${user.username}</h1>
-        <h3>Forums Created: ${user.forums.size()}</h3>
-        <h3>Questions Asked: ${user.questions.size()}</h3>
-        <h3>Questions Answered: ${user.answers.size()}</h3>
+        <div class="card">
+            <div class="card-header" style="background-color: #4e73ff">
+                <h1 style="padding-left: 0px; color: black;">${user.username}</h1>
+            </div>
+            <h2>Forums Created: ${user.forums.size()}</h2>
+            <h2>Questions Asked: ${user.questions.size()}</h2>
+            <h2>Questions Answered: ${user.answers.size()}</h2>
+            <sec:authorize access="hasAuthority('ROLE_ADMIN')">
+                <div class="card-footer text-muted">
+                    <c:choose>
+                        <c:when test="${user.getIsBanned() == false}">
+                            <a href="/ban?userId=${user.userId}">Ban User</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/unban?userId=${user.userId}">Unban User</a>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+            </sec:authorize>
+        </div>
     </div>
     <div class="card my-card">
         <div class="card">

@@ -22,16 +22,33 @@
                 <h2 style="text-align: center">${question.title}</h2>
             </div>
             <p style="color: white">${question.text}</p>
+
                 <c:if test="${question.getUsername() == 'unknown' ||
                               question.getUsername() == pageContext.request.remoteUser ||
                               pageContext.request.remoteUser == 'koarl'}">
-                    <a href="newquestion?forumId=${forum.forumId}&questId=${question.questId}">
-                        <p style="text-align: right;">Edit</p>
-                    </a>
-                    <a href="deletequestion?questId=${question.questId}">
-                        <p style="text-align: right;">Delete</p>
-                    </a>
+                    <div class="card-footer" style="height: 4rem; background-color: #4e73ff">
+                        <div class="row">
+                            <div class="col-sm">
+                                <a href="newquestion?forumId=${forum.forumId}&questId=${question.questId}">
+                                    <p style="text-align: right;">Edit</p>
+                                </a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="deletequestion?questId=${question.questId}">
+                                    <p style="text-align: right;">Delete</p>
+                                </a>
+                            </div>
+                            <c:if test="${question.getIsClosed() == false}">
+                                <div class="col-sm">
+                                    <a href="close?questId=${question.questId}">
+                                        <p style="text-align: right;">Close this question</p>
+                                    </a>
+                                </div>
+                            </c:if>
+                        </div>
+                    </div>
                 </c:if>
+
         </div>
     </div>
     <div class="card my-card">
@@ -63,13 +80,16 @@
             <hr>
         </c:forEach>
     </div>
-    <div class="card my-card">
-        <form method="post" action="createanswer?forumId=${forum.forumId}&questId=${question.questId}">
-            <label for="text"><p style="color: black; padding-top: 5px; padding-left: 10px;">Answer this question:</p></label><br>
-            <textarea style="box-sizing: border-box; width: 100%" placeholder="Answer" id="text" name="text"></textarea>
-            <input type="submit" value="Post">
-        </form>
-    </div>
+    <c:if test="${question.getIsClosed() == false &&
+                  pageContext.request.remoteUser != null}">
+        <div class="card my-card">
+            <form method="post" action="createanswer?forumId=${forum.forumId}&questId=${question.questId}">
+                <label for="text"><p style="color: black; padding-top: 5px; padding-left: 10px;">Answer this question:</p></label><br>
+                <textarea style="box-sizing: border-box; width: 100%" placeholder="Answer" id="text" name="text"></textarea>
+                <input type="submit" value="Post">
+            </form>
+        </div>
+    </c:if>
     <br>
     <br>
     <br>
