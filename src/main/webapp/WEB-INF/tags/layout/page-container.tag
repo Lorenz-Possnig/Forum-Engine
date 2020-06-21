@@ -123,6 +123,7 @@
                         Forumengine.org
                     </div>
                     <div class="col-sm">
+                        Join us on:
                         <a href="http://www.facebook.com/forum-engine-109767487448741" class="fa fa-facebook"></a>
                         <a href="http://www.instagram.com/real_forum_engine" class="fa fa-instagram"></a>
                     </div>
